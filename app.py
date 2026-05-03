@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-#from src.helper import download_HuggingFace
+from src.helper import download_HuggingFace
 from langchain_pinecone import Pinecone
 from langchain_google_genai import ChatGoogleGenerativeAI
 # new - from langchain.chains import create_retrieval_chain
@@ -22,7 +22,7 @@ gemini_api_key= os.environ.get("gemini_api_key")
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["gemini_api_key"] = gemini_api_key
 
-#embeddings = download_HuggingFace()
+embeddings = download_HuggingFace()
 
 index_name = "medibot"
 
