@@ -28,7 +28,7 @@ os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 #embeddings = download_HuggingFace()
 
 embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001"
+    model="text-embedding-004"
 )
 
 index_name = "medibot"
