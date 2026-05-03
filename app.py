@@ -23,6 +23,7 @@ gemini_api_key= os.environ.get("gemini_api_key")
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["gemini_api_key"] = gemini_api_key
 os.environ["GOOGLE_API_KEY"] = os.getenv("gemini_api_key")
+os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 
 #embeddings = download_HuggingFace()
 
