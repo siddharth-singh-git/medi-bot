@@ -10,7 +10,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
 import os
-from sentence_transformers import SentenceTransformer
+#from sentence_transformers import SentenceTransformer
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 app = Flask(__name__)
