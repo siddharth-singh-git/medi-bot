@@ -64,9 +64,11 @@ def chat():
     try:
         msg = request.form["msg"]
         response = llm.invoke(msg)
+
         return jsonify({"response": response.content})
+
     except Exception as e:
-        return str(e)
+        return jsonify({"response": str(e)})
 
 
 
