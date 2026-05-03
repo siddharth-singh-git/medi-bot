@@ -63,28 +63,33 @@
 					$("#messageFormeight").append(userHtml);
 
 					$.ajax({
-    data: { msg: rawText },
-    type: "POST",
     url: "/get",
+    type: "POST",
+    data: { msg: rawText },
     dataType: "json"   // 🔥 IMPORTANT
 }).done(function(data) {
 
-    console.log("RAW DATA:", data);
+    console.log("RAW RESPONSE:", data);
 
     let botResponse = "";
 
-    // 🔥 your API returns a list
+    // 🔥 handle ALL possible formats safely
     if (Array.isArray(data)) {
         botResponse = data[0]?.text || "";
-    } 
-    else if (data?.text) {
-        botResponse = data.text;
-    } 
+    }
     else if (data?.response) {
         botResponse = data.response;
-    } 
+    }
+    else if (data?.text) {
+        botResponse = data.text;
+    }
     else {
-        botResponse = JSON.stringify(data);
+        botResponse = String(data);
+    }
+
+    // 🔥 FINAL SAFETY: never allow object into HTML
+    if (typeof botResponse !== "string") {
+        botResponse = JSON.stringify(botResponse);
     }
 
     var botHtml = `
