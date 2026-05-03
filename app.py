@@ -63,16 +63,9 @@ def index():
 def chat():
     try:
         msg = request.form["msg"]
-        print("User input:", msg)
-
-        response = rag_chain.invoke({"input": msg})
-
-        print("Full response:", response)
-
-        return str(response.get("answer", "No answer found"))
-
+        response = llm.invoke(msg)
+        return str(response.content)
     except Exception as e:
-        print("ERROR:", str(e))
         return str(e)
 
 
