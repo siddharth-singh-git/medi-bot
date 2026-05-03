@@ -71,18 +71,7 @@
 
     console.log("DEBUG:", data);
 
-    let botResponse = "";
-
-    // 🔥 safest extraction
-    if (typeof data === "string") {
-        botResponse = data;
-    } 
-    else if (data.response) {
-        botResponse = data.response;
-    } 
-    else {
-        botResponse = JSON.stringify(data);
-    }
+    let botResponse = data?.response || data?.text || data;
 
     var botHtml = `
     <div class="d-flex justify-content-start mb-4">
