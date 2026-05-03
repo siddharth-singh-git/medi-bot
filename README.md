@@ -1,1 +1,1 @@
-# medi-bot
+# ai-medical-bot
