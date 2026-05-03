@@ -73,19 +73,16 @@
 
     let botResponse = "";
 
-    // 🔥 handle ALL possible formats safely
-    if (Array.isArray(data)) {
-        botResponse = data[0]?.text || "";
-    }
-    else if (data?.response) {
-        botResponse = data.response;
-    }
-    else if (data?.text) {
-        botResponse = data.text;
-    }
-    else {
-        botResponse = String(data);
-    }
+// 🔥 your actual structure
+if (Array.isArray(data)) {
+    botResponse = data[0]?.text || "";
+} 
+else if (typeof data === "object") {
+    botResponse = data.text || data.response || "";
+} 
+else {
+    botResponse = String(data);
+}
 
     // 🔥 FINAL SAFETY: never allow object into HTML
     if (typeof botResponse !== "string") {
@@ -98,7 +95,7 @@
             <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle user_img_msg">
         </div>
         <div class="msg_cotainer">
-            ${botResponse}
+            ${String(botResponse)}
             <span class="msg_time">${str_time}</span>
         </div>
     </div>`;
