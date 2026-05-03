@@ -63,18 +63,17 @@
 					$("#messageFormeight").append(userHtml);
 
 					$.ajax({
-						data: {
-							msg: rawText,	
-						},
-						type: "POST",
-						url: "/get",
-					}).done(function(data) {
+    data: { msg: rawText },
+    type: "POST",
+    url: "/get",
+    dataType: "json"   // 🔥 IMPORTANT
+}).done(function(data) {
 
-    console.log(data); // 🔥 DEBUG (keep for now)
+    console.log("DEBUG:", data);
 
     let botResponse = "";
 
-    // handle JSON or string safely
+    // 🔥 safest extraction
     if (typeof data === "string") {
         botResponse = data;
     } 
@@ -85,10 +84,16 @@
         botResponse = JSON.stringify(data);
     }
 
-    var botHtml = '<div class="d-flex justify-content-start mb-4">' +
-        '<div class="img_cont_msg"><img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle user_img_msg"></div>' +
-        '<div class="msg_cotainer">' + botResponse +
-        '<span class="msg_time">' + str_time + '</span></div></div>';
+    var botHtml = `
+    <div class="d-flex justify-content-start mb-4">
+        <div class="img_cont_msg">
+            <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle user_img_msg">
+        </div>
+        <div class="msg_cotainer">
+            ${botResponse}
+            <span class="msg_time">${str_time}</span>
+        </div>
+    </div>`;
 
     $("#messageFormeight").append(botHtml);
 });
