@@ -73,6 +73,11 @@
 
     let botResponse = data?.response || data?.text || data;
 
+    // 🔥 FORCE STRING ALWAYS
+    if (typeof botResponse !== "string") {
+        botResponse = JSON.stringify(botResponse);
+    }
+
     var botHtml = `
     <div class="d-flex justify-content-start mb-4">
         <div class="img_cont_msg">
