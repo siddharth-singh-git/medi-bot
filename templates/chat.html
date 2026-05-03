@@ -69,13 +69,22 @@
     dataType: "json"   // 🔥 IMPORTANT
 }).done(function(data) {
 
-    console.log("DEBUG:", data);
+    console.log("RAW DATA:", data);
 
-    let botResponse = data?.response || data?.text || data;
+    let botResponse = "";
 
-    // 🔥 FORCE STRING ALWAYS
-    if (typeof botResponse !== "string") {
-        botResponse = JSON.stringify(botResponse);
+    // 🔥 your API returns a list
+    if (Array.isArray(data)) {
+        botResponse = data[0]?.text || "";
+    } 
+    else if (data?.text) {
+        botResponse = data.text;
+    } 
+    else if (data?.response) {
+        botResponse = data.response;
+    } 
+    else {
+        botResponse = JSON.stringify(data);
     }
 
     var botHtml = `
